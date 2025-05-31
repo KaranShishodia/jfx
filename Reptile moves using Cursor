@@ -1,0 +1,31 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class ReptileCursorDemo extends JFrame {
+    public ReptileCursorDemo() {
+        setTitle("Reptile Cursor");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Load custom cursor image
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage("reptile_cursor.png"); // Replace with your image
+        Cursor customCursor = toolkit.createCustomCursor(image, new Point(0, 0), "ReptileCursor");
+
+        // Apply custom cursor
+        setCursor(customCursor);
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                // Simulate lag or segmented movement (optional)
+                System.out.println("Cursor moved to: " + e.getPoint());
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new ReptileCursorDemo().setVisible(true));
+    }
+}
